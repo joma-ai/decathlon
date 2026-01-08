@@ -1,0 +1,53 @@
+<div class="container">
+  <h1>Decathlon Points Calculator</h1>
+
+  <div class="card">
+    <label>
+      Event
+      <select [(ngModel)]="selectedEventCode" (change)="onEventChange()">
+        <option *ngFor="let e of events" [value]="e.eventCode">
+          {{ e.eventName }} ({{ e.eventCode }})
+        </option>
+      </select>
+    </label>
+
+    <label>
+      Result
+      <input type="number" step="any" [(ngModel)]="resultInput" />
+      <span *ngIf="selectedEvent">
+        ({{ unitLabel(selectedEvent.unit) }})
+      </span>
+    </label>
+
+    <div class="actions">
+      <button (click)="calculate()">Calculate</button>
+      <button class="secondary" (click)="clear()">Clear</button>
+    </div>
+
+    <p class="error" *ngIf="error">{{ error }}</p>
+  </div>
+
+  <div class="card" *ngIf="history.length > 0">
+    <div class="total">
+      <span>Total points</span>
+      <strong>{{ totalPoints }}</strong>
+    </div>
+
+    <table>
+      <thead>
+      <tr>
+        <th>Event</th>
+        <th>Result</th>
+        <th>Points</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let r of history">
+        <td>{{ r.eventName }}</td>
+        <td>{{ r.result }}</td>
+        <td>{{ r.points }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
