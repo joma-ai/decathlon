@@ -12,5 +12,5 @@ docker compose up -d --build
 ```
 
 ## Access
-Frontend: http://localhost:4200
-Backend: http://localhost:8080
+- Frontend: http://localhost:4200
+- Backend: http://localhost:8080
